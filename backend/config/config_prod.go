@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-const (
+var (
 	AdminSecret        = os.Getenv("MONITA_ADMIN_SECRET")
 	DBConnectionString = os.Getenv("MONITA_DB_CONNECTION_STRING")
 	Entrypoint         = os.Getenv("MONITA_ENTRYPOINT")
@@ -23,7 +23,7 @@ func init() {
 
 	for _, v := range vars {
 		if v == "" {
-			panic()
+			panic("Not all environment variables set (MONITA_ADMIN_SECRET, MONITA_DB_CONNECTION_STRING, MONITA_ENTRYPOINT, MONITA_JWT_SECRET)")
 		}
 	}
 }

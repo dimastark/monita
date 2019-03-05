@@ -15,27 +15,27 @@ type Generic struct {
 
 // OK for 200 status
 func OK() *Generic {
-	return &Generic{200, http.StatusText(200)}
+	return &Generic{http.StatusOK, http.StatusText(http.StatusOK)}
 }
 
 // BadRequest for 400 status
 func BadRequest(err error) *Generic {
-	return &Generic{400, err.Error()}
+	return &Generic{http.StatusBadRequest, err.Error()}
 }
 
 // Unauthorized for 401 status
 func Unauthorized() *Generic {
-	return &Generic{401, http.StatusText(401)}
+	return &Generic{http.StatusUnauthorized, http.StatusText(http.StatusUnauthorized)}
 }
 
 // NotFound for 404 status
 func NotFound(entity string) *Generic {
-	return &Generic{404, fmt.Sprint(entity, "not found")}
+	return &Generic{http.StatusNotFound, fmt.Sprint(entity, "not found")}
 }
 
 // ServerError for 500 status
 func ServerError() *Generic {
-	return &Generic{500, http.StatusText(500)}
+	return &Generic{http.StatusInternalServerError, http.StatusText(http.StatusInternalServerError)}
 }
 
 // Render writes status to response
