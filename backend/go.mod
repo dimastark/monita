@@ -16,5 +16,7 @@ require (
 	github.com/ssor/bom v0.0.0-20170718123548-6386211fdfcf // indirect
 	github.com/urfave/cli v1.20.1-0.20190203184040-693af58b4d51
 	golang.org/x/crypto v0.0.0-20190228161510-8dd112bcdc25
+	golang.org/x/net v0.0.0-20190301231341-16b79f2e4e95 // indirect
 	golang.org/x/sys v0.0.0-20190305064518-30e92a19ae4a // indirect
+	gopkg.in/resty.v1 v1.12.0
 )
