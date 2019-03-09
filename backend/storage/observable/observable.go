@@ -1,6 +1,7 @@
 package observable
 
 import (
+	"fmt"
 	"monita/pkg/webpage"
 
 	"github.com/jinzhu/gorm"
@@ -159,4 +160,15 @@ func (o *Observable) Reorder(order int) {
 	o.Order = order
 
 	database.Save(o)
+}
+
+// Print prints all observable data
+func (o *Observable) Print() {
+	fmt.Println("ID:          ", o.ID)
+	fmt.Println("Name:        ", o.Name)
+	fmt.Println("Periodicity: ", o.Periodicity)
+	fmt.Println("URL:         ", o.URL)
+	fmt.Println("Selector:    ", o.Selector)
+	fmt.Println("Current data:", o.LastData)
+	fmt.Println("Muted:       ", o.Mute)
 }

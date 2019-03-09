@@ -1,6 +1,7 @@
 package observable
 
 import (
+	"fmt"
 	"net/http"
 
 	"monita/pkg/response"
@@ -60,6 +61,14 @@ func (ldr *LoadDataResponse) Render(w http.ResponseWriter, r *http.Request) erro
 	render.Status(r, http.StatusOK)
 
 	return nil
+}
+
+// Print prints all LoadDataResponse data
+func (ldr *LoadDataResponse) Print() {
+	fmt.Println("ID:      ", ldr.ID)
+	fmt.Println("Name:    ", ldr.Name)
+	fmt.Println("Old data:", ldr.LastData)
+	fmt.Println("New data:", ldr.NewData)
 }
 
 // HandleResponse represents handle result
