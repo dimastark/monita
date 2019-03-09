@@ -15,25 +15,27 @@ type WebPage struct {
 
 // Load the WebPage by url
 func Load(url string) (*WebPage, error) {
-	res, err := http.Get(url)
+	resp, err := http.Get(url)
+
+	if resp != nil {
+		defer resp.Body.Close()
+	}
 
 	if err != nil {
 		return nil, err
 	}
 
-	defer res.Body.Close()
-
-	if res.StatusCode != 200 {
-		return nil, fmt.Errorf("status code error: %d %s", res.StatusCode, res.Status)
+	if resp.StatusCode != 200 {
+		return nil, fmt.Errorf("bad status code: %d", resp.StatusCode)
 	}
 
-	d, err := goquery.NewDocumentFromReader(res.Body)
+	doc, err := goquery.NewDocumentFromReader(resp.Body)
 
 	if err != nil {
 		return nil, err
 	}
 
-	return &WebPage{d}, nil
+	return &WebPage{doc}, nil
 }
 
 // Select gets text matched selector or empty string

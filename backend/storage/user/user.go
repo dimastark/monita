@@ -92,10 +92,8 @@ func GetByLogin(login string) *User {
 
 // DeleteByName deletes User by provided name
 func DeleteByName(name string) {
-	user := GetByName(name)
-
-	if user != nil {
-		database.Delete(&user)
+	if u := GetByName(name); u != nil {
+		database.Delete(&u)
 	}
 }
 

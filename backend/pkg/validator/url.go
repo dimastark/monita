@@ -7,13 +7,15 @@ import (
 
 // URL returns error if the string is not an valid URL
 func URL(str string) error {
-	res, err := http.Get(str)
+	resp, err := http.Get(str)
 
-	if err != nil {
-		return errors.New("url is not a valid")
+	if resp != nil {
+		defer resp.Body.Close()
 	}
 
-	defer res.Body.Close()
+	if err != nil {
+		return errors.New("invalid url")
+	}
 
 	return nil
 }

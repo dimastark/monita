@@ -46,9 +46,7 @@ func GetByID(id uint) *Observable {
 
 // DeleteByID deletes Observable by provided id
 func DeleteByID(id uint) {
-	o := GetByID(id)
-
-	if o != nil {
+	if o := GetByID(id); o != nil {
 		database.Delete(o)
 	}
 }
