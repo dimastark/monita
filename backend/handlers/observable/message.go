@@ -8,6 +8,7 @@ import (
 	"monita/pkg/validator"
 	"monita/storage/observable"
 
+	"github.com/fatih/color"
 	"github.com/go-chi/render"
 )
 
@@ -65,10 +66,12 @@ func (ldr *LoadDataResponse) Render(w http.ResponseWriter, r *http.Request) erro
 
 // Print prints all LoadDataResponse data
 func (ldr *LoadDataResponse) Print() {
-	fmt.Println("ID:      ", ldr.ID)
-	fmt.Println("Name:    ", ldr.Name)
-	fmt.Println("Old data:", ldr.LastData)
-	fmt.Println("New data:", ldr.NewData)
+	green := color.New(color.FgGreen).SprintFunc()
+
+	fmt.Printf("%s:       %d\n", green("ID"), ldr.ID)
+	fmt.Printf("%s:     %s\n", green("Name"), ldr.Name)
+	fmt.Printf("%s: `%s`\n", green("Old data"), ldr.LastData)
+	fmt.Printf("%s: `%s`\n", green("New data"), ldr.NewData)
 }
 
 // HandleResponse represents handle result

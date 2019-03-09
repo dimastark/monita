@@ -86,13 +86,15 @@ func create() cli.Command {
 				return
 			}
 
-			_, err = newClient(c).
+			resp, err := newClient(c).
 				CreateObservable(observable.CreateObservableRequest{
 					Name:        prompt.Name(c),
 					Periodicity: prompt.Periodicity(c),
 					URL:         prompt.URL(c),
 					Selector:    prompt.Selector(c),
 				})
+
+			prettyPrintlnStruct(resp)
 
 			return
 		},
@@ -166,7 +168,7 @@ func load() cli.Command {
 					resp.Print()
 					fmt.Println()
 
-					if c.Bool("handle") {
+					if c.Bool("resolve") {
 						mc.HandleObservable(o.ID)
 					}
 				}

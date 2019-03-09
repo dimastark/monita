@@ -5,6 +5,7 @@ import (
 
 	"monita/pkg/client"
 
+	"github.com/hokaccha/go-prettyjson"
 	"github.com/urfave/cli"
 )
 
@@ -66,4 +67,20 @@ func checkNotAdmin(c *cli.Context) bool {
 	}
 
 	return false
+}
+
+func prettyPrintlnJSON(jsonString string) {
+	p, err := prettyjson.Format([]byte(jsonString))
+
+	if err == nil {
+		fmt.Println(string(p))
+	}
+}
+
+func prettyPrintlnStruct(json interface{}) {
+	p, err := prettyjson.Marshal(json)
+
+	if err == nil {
+		fmt.Println(string(p))
+	}
 }

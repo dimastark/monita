@@ -48,12 +48,14 @@ func createUser() cli.Command {
 				return
 			}
 
-			_, err = newAdminClient(c).
+			resp, err := newAdminClient(c).
 				CreateUser(user.CreateUserRequest{
 					Name:     prompt.Name(c),
 					Email:    prompt.Email(c),
 					Password: prompt.Password(c),
 				})
+
+			prettyPrintlnStruct(resp)
 
 			return
 		},

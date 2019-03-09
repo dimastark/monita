@@ -6,6 +6,7 @@ import (
 	"os"
 	"strings"
 
+	"github.com/fatih/color"
 	"github.com/urfave/cli"
 )
 
@@ -18,7 +19,7 @@ func prompt(c *cli.Context, param string, validator func(string) error) string {
 
 	for err != nil || s == "" {
 		if err != nil {
-			fmt.Println(err)
+			color.Red("%s", err)
 		}
 
 		fmt.Printf("Enter %s: ", param)
