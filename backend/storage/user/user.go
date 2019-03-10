@@ -222,7 +222,7 @@ func worker(periodicity string) {
 
 			newData := o.LastData
 
-			if oldData != newData {
+			if oldData != newData && !o.Mute {
 				data.Updates = append(data.Updates, mail.UpdateData{
 					ID:      o.ID,
 					Name:    o.Name,
@@ -232,7 +232,7 @@ func worker(periodicity string) {
 			}
 		}
 
-		if len(data.Updates) != 0 {
+		if len(data.Updates) != 0 && !u.Mute {
 			err := mail.Send(u.Email, data)
 
 			if err != nil {
