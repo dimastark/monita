@@ -50,7 +50,7 @@ func createUser() cli.Command {
 
 			resp, err := newAdminClient(c).
 				CreateUser(user.CreateUserRequest{
-					Name:     prompt.Name(c),
+					Name:     prompt.UserName(c),
 					Email:    prompt.Email(c),
 					Password: prompt.Password(c),
 				})
@@ -84,7 +84,7 @@ func deleteUser() cli.Command {
 			}
 
 			return newAdminClient(c).
-				DeleteUser(prompt.Name(c))
+				DeleteUser(prompt.UserName(c))
 		},
 	}
 }

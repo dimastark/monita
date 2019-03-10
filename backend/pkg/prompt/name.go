@@ -6,7 +6,12 @@ import (
 	"github.com/urfave/cli"
 )
 
-// Name prompts for user name
-func Name(c *cli.Context) string {
+// UserName prompts for user name
+func UserName(c *cli.Context) string {
 	return prompt(c, "name", validator.Name)
+}
+
+// ObservableName prompts for observable name
+func ObservableName(c *cli.Context) string {
+	return prompt(c, "name", validator.NotEmpty)
 }

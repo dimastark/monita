@@ -23,7 +23,7 @@ type CreateObservableRequest struct {
 // Bind implements render.Binder interface
 func (cr *CreateObservableRequest) Bind(r *http.Request) error {
 	return response.Validate(
-		validator.Name(cr.Name),
+		validator.NotEmpty(cr.Name),
 		validator.Periodicity(cr.Periodicity),
 		validator.URL(cr.URL),
 		validator.Selector(cr.Selector),

@@ -88,7 +88,7 @@ func create() cli.Command {
 
 			resp, err := newClient(c).
 				CreateObservable(observable.CreateObservableRequest{
-					Name:        prompt.Name(c),
+					Name:        prompt.ObservableName(c),
 					Periodicity: prompt.Periodicity(c),
 					URL:         prompt.URL(c),
 					Selector:    prompt.Selector(c),
