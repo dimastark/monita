@@ -55,7 +55,9 @@ func createUser() cli.Command {
 					Password: prompt.Password(c),
 				})
 
-			prettyPrintlnStruct(resp)
+			if resp != nil {
+				prettyPrintlnStruct(resp)
+			}
 
 			return
 		},

@@ -5,6 +5,7 @@ package config
 import (
 	"log"
 	"os"
+	"strconv"
 )
 
 var (
@@ -14,7 +15,7 @@ var (
 	JWTSecret          = os.Getenv("MONITA_JWT_SECRET")
 	EmailFrom          = os.Getenv("MONITA_EMAIL_FROM")
 	DialerAddress      = os.Getenv("MONITA_DIALER_ADDRESS")
-	DialerPort         = os.Getenv("MONITA_DIALER_PORT")
+	DialerPort, _      = strconv.Atoi(os.Getenv("MONITA_DIALER_PORT"))
 	DialerUser         = os.Getenv("MONITA_DIALER_USER")
 	DialerPassword     = os.Getenv("MONITA_DIALER_PASSWORD")
 )

@@ -1,10 +1,13 @@
-// +build !production
-
 package main
+
+import (
+	"os"
+	"path"
+)
 
 var (
 	// TokenFile file with API token for CLI
-	TokenFile = "monita_token"
+	TokenFile = path.Join(os.Getenv("HOME"), ".monita_token")
 	// APIBaseURL base url for CLI
-	APIBaseURL = "http://localhost:8000"
+	APIBaseURL = "http://monita-backend.dimastark.com"
 )

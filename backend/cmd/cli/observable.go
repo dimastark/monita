@@ -94,7 +94,9 @@ func create() cli.Command {
 					Selector:    prompt.Selector(c),
 				})
 
-			prettyPrintlnStruct(resp)
+			if resp != nil {
+				prettyPrintlnStruct(resp)
+			}
 
 			return
 		},

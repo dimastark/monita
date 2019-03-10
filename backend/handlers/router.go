@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"log"
 	"net/http"
 
 	"monita/config"
@@ -58,5 +59,5 @@ func Listen() {
 		})
 	})
 
-	http.ListenAndServe(config.Entrypoint, r)
+	log.Println(http.ListenAndServe(config.Entrypoint, r))
 }
