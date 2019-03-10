@@ -1,0 +1,16 @@
+language: go
+
+env:
+- GO111MODULE=on
+
+before_install:
+- go get github.com/tcnksm/ghr
+- cd backend
+- go get -v ./...
+
+script:
+- cd cmd/cli
+- GOOS=darwin  go build -o dist/darwin_monita
+- GOOS=linux   go build -o dist/linux_monita
+- GOOS=windows go build -o dist/windows_monita.exe
+- ghr --username dimastark --token $GITHUB_TOKEN --replace --prerelease --debug pre-release dist/
