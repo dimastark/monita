@@ -40,7 +40,7 @@ func Login() cli.Command {
 				return
 			}
 
-			return ioutil.WriteFile(TokenFile, []byte(resp.Token), 0400)
+			return ioutil.WriteFile(TokenFile, []byte(resp.Token), 0600)
 		},
 	}
 }
