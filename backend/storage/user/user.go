@@ -2,9 +2,12 @@ package user
 
 import (
 	"errors"
+	"log"
 
+	"monita/pkg/mail"
 	"monita/storage/observable"
 
+	"github.com/jasonlvhit/gocron"
 	"github.com/jinzhu/gorm"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -31,6 +34,15 @@ func Init(db *gorm.DB) {
 		AddUniqueIndex("unique_email", "email")
 
 	database = db
+}
+
+// GetAll returns all users
+func GetAll() []User {
+	users := []User{}
+
+	database.Find(&users)
+
+	return users
 }
 
 // GetByID returns User by provided id
@@ -174,4 +186,58 @@ func (u *User) GetObservables() []observable.Observable {
 		Find(&observables, "user_id = ?", u.ID)
 
 	return observables
+}
+
+// GetObservablesWithPeriodicity returns User related Observables with concrete periodicity
+func (u *User) GetObservablesWithPeriodicity(periodicity string) []observable.Observable {
+	observables := []observable.Observable{}
+
+	database.
+		Order(`"order"`).
+		Find(&observables, "user_id = ? AND periodicity = ?", u.ID, periodicity)
+
+	return observables
+}
+
+// Worker update observables automatically
+func Worker() {
+	gocron.Every(1).Minute().Do(worker, "regularly")
+	gocron.Every(1).Day().At("9:00").Do(worker, "daily")
+	gocron.Every(1).Monday().At("9:00").Do(worker, "weekly")
+
+	<-gocron.Start()
+}
+
+func worker(periodicity string) {
+	for _, u := range GetAll() {
+		data := mail.TemplateData{
+			ReportType: periodicity,
+			Updates:    make([]mail.UpdateData, 0),
+		}
+
+		for _, o := range u.GetObservablesWithPeriodicity(periodicity) {
+			oldData := o.LastData
+
+			o.Handle()
+
+			newData := o.LastData
+
+			if oldData != newData {
+				data.Updates = append(data.Updates, mail.UpdateData{
+					ID:      o.ID,
+					Name:    o.Name,
+					OldData: oldData,
+					NewData: newData,
+				})
+			}
+		}
+
+		if len(data.Updates) != 0 {
+			err := mail.Send(u.Email, data)
+
+			if err != nil {
+				log.Println("error while send:", data)
+			}
+		}
+	}
 }

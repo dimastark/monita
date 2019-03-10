@@ -11,4 +11,6 @@ import (
 func Init(db *gorm.DB) {
 	user.Init(db)
 	observable.Init(db)
+
+	go user.Worker()
 }

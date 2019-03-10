@@ -2,6 +2,7 @@ package observable
 
 import (
 	"fmt"
+
 	"monita/pkg/webpage"
 
 	"github.com/fatih/color"
@@ -165,11 +166,10 @@ func (o *Observable) Reorder(order int) {
 func (o *Observable) Print() {
 	green := color.New(color.FgGreen).SprintFunc()
 
-	fmt.Printf("%s:           %d\n", green("ID"), o.ID)
-	fmt.Printf("%s:         %s\n", green("Name"), o.Name)
-	fmt.Printf("%s:  %s\n", green("Periodicity"), o.Periodicity)
-	fmt.Printf("%s:          %s\n", green("URL"), o.URL)
-	fmt.Printf("%s:     %s\n", green("Selector"), o.Selector)
-	fmt.Printf("%s: `%s`\n", green("Current data"), o.LastData)
-	fmt.Printf("%s:        %t\n", green("Muted"), o.Mute)
+	fmt.Printf("%s:          %d\n", green("ID"), o.ID)
+	fmt.Printf("%s:        %s\n", green("Name"), o.Name)
+	fmt.Printf("%s: %s\n", green("Periodicity"), o.Periodicity)
+	fmt.Printf("%s:         %s\n", green("URL"), o.URL)
+	fmt.Printf("%s:    %s\n", green("Selector"), o.Selector)
+	fmt.Printf("%s:       %t\n", green("Muted"), o.Mute)
 }

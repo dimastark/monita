@@ -74,6 +74,8 @@ func prettyPrintlnJSON(jsonString string) {
 
 	if err == nil {
 		fmt.Println(string(p))
+	} else {
+		fmt.Println(jsonString)
 	}
 }
 
