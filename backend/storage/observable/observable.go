@@ -170,7 +170,7 @@ func (o *Observable) Print() {
 	fmt.Printf("%s:        %s\n", green("Name"), o.Name)
 
 	if len(o.LastData) > 10 {
-		fmt.Printf("%s:        %s...\n", green("Data"), o.LastData)
+		fmt.Printf("%s:        %s...\n", green("Data"), o.LastData[:10])
 	} else {
 		fmt.Printf("%s:        %s\n", green("Data"), o.LastData)
 	}
