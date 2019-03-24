@@ -168,13 +168,7 @@ func (o *Observable) Print() {
 
 	fmt.Printf("%s:          %d\n", green("ID"), o.ID)
 	fmt.Printf("%s:        %s\n", green("Name"), o.Name)
-
-	if len(o.LastData) > 10 {
-		fmt.Printf("%s:        %s...\n", green("Data"), o.LastData[:10])
-	} else {
-		fmt.Printf("%s:        %s\n", green("Data"), o.LastData)
-	}
-
+	fmt.Printf("%s:        %s\n", green("Data"), o.LastData)
 	fmt.Printf("%s: %s\n", green("Periodicity"), o.Periodicity)
 	fmt.Printf("%s:         %s\n", green("URL"), o.URL)
 	fmt.Printf("%s:    %s\n", green("Selector"), o.Selector)
