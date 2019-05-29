@@ -9,5 +9,5 @@ var (
 	// TokenFile file with API token for CLI
 	TokenFile = path.Join(os.Getenv("HOME"), ".monita_token")
 	// APIBaseURL base url for CLI
-	APIBaseURL = "http://monita-backend.dimastark.com"
+	APIBaseURL = "91.240.84.219"
 )
