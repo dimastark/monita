@@ -3,10 +3,10 @@ package observable
 import (
 	"fmt"
 
-	"monita/pkg/webpage"
-
 	"github.com/fatih/color"
 	"github.com/jinzhu/gorm"
+
+	"monita/pkg/chrome"
 )
 
 var database *gorm.DB
@@ -94,13 +94,7 @@ func (o *Observable) LoadData() (string, error) {
 }
 
 func loadData(url, selector string) (string, error) {
-	w, err := webpage.Load(url)
-
-	if err != nil {
-		return "", err
-	}
-
-	return w.Select(selector), nil
+	return chrome.ElementScreenshot(url, selector)
 }
 
 // Handle update the LastData of Observable
@@ -168,7 +162,6 @@ func (o *Observable) Print() {
 
 	fmt.Printf("%s:          %d\n", green("ID"), o.ID)
 	fmt.Printf("%s:        %s\n", green("Name"), o.Name)
-	fmt.Printf("%s:        %s\n", green("Data"), o.LastData)
 	fmt.Printf("%s: %s\n", green("Periodicity"), o.Periodicity)
 	fmt.Printf("%s:         %s\n", green("URL"), o.URL)
 	fmt.Printf("%s:    %s\n", green("Selector"), o.Selector)

@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"strconv"
+	"time"
 )
 
 var (
@@ -18,6 +19,7 @@ var (
 	DialerPort, _      = strconv.Atoi(os.Getenv("MONITA_DIALER_PORT"))
 	DialerUser         = os.Getenv("MONITA_DIALER_USER")
 	DialerPassword     = os.Getenv("MONITA_DIALER_PASSWORD")
+	ElementSleepTime   = 10 * time.Second
 )
 
 func init() {

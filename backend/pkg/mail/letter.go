@@ -9,7 +9,7 @@ const (
 	tableStyle     = "margin: 30px 0 30px 0;"
 	headerStyle    = "height: 40px; text-align: center; text-transform: uppercase; font-size: 24px;"
 	labelStyle     = "color: #247ad6; padding: 0 30px; width: 1px; white-space: nowrap; vertical-align: top;"
-	dataStyle      = "padding-top: 15px; word-break: break-all;"
+	dataStyle      = "padding-top: 15px; max-width: 300px"
 	updatesTrStyle = "line-height: 30px;"
 
 	letter = `
@@ -39,11 +39,11 @@ const (
             </tr>
             <tr style="` + updatesTrStyle + `">
                 <td style="` + labelStyle + `">Old Data:</td>
-                <td class="` + dataStyle + `">{{ .OldData }}</td>
+                <td class="` + dataStyle + `"><img src="{{ .OldData }}"/></td>
             </tr>
             <tr style="` + updatesTrStyle + `">
                 <td style="` + labelStyle + `">New Data:</td>
-                <td class="` + dataStyle + `">{{ .NewData }}</td>
+                <td class="` + dataStyle + `"><img src="{{ .NewData }}"/></td>
             </tr>
 		</table>
         {{ end }}

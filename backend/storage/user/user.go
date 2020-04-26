@@ -218,7 +218,10 @@ func worker(periodicity string) {
 		for _, o := range u.GetObservablesWithPeriodicity(periodicity) {
 			oldData := o.LastData
 
-			o.Handle()
+			if err := o.Handle(); err != nil {
+				log.Println("error while handling id:", o.ID, err)
+				continue
+			}
 
 			newData := o.LastData
 

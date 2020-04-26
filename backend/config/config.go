@@ -4,6 +4,7 @@ package config
 
 import (
 	"os"
+	"time"
 )
 
 var (
@@ -25,4 +26,6 @@ var (
 	DialerUser = "robot-monita"
 	// DialerPassword for sending emails
 	DialerPassword = os.Getenv("MONITA_DIALER_PASSWORD")
+	// ElementSleepTime for wait element available on page
+	ElementSleepTime = 10 * time.Second
 )
